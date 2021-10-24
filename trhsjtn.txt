@@ -1,0 +1,444 @@
+#include <iostream>
+#include <stdio.h>  
+#include <stdlib.h>   
+#include <time.h>     
+
+using namespace std;
+string g1 = "";
+string g2 = "";
+string g3 = "";
+string g4 = "";
+int gracze = 0;
+int potwierdzenie = 0;
+int kostka = 0;
+int g1punkty = 0, g2punkty = 0, g3punkty = 0, g4punkty = 0;
+int moneta = 0;
+int wyborg1 = 0;
+int i = 1;
+int g1wynik = 0, g2wynik = 0, g3wynik = 0, g4wynik = 0;
+
+
+
+
+void ile_graczy() //iloscgraczyaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+{
+	cout << "Ile bedzie gralo (min.2)(max.4)?" << endl;
+	cin >> gracze;
+	switch (gracze)
+	{
+	case 1: cout << "minimalnie 2 gracze" << endl; break;
+	case 2: cout << "wybrales 2 graczy" << endl; break;
+	case 3: cout << "wybrales 3 graczy" << endl; break;
+	case 4: cout << "wybrales 4 graczy" << endl; break;
+	default: cout << "zla odpowiedz: max. 4" << endl; break;
+
+	}
+}
+void nick() //nickqaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+{
+	cout << "wybierzcie nicki:" << endl;
+	switch (gracze)
+	{
+	case 2:
+
+		cout << "Gracz 1 daj nick:" << endl;
+		cin >> g1;
+		cout << "Gracz 2 daj nick:" << endl;
+		cin >> g2;
+
+		break;
+	case 3:
+		cout << "Gracz 1 daj nick:" << endl;
+		cin >> g1;
+		cout << "Gracz 2 daj nick:" << endl;
+		cin >> g2;
+		cout << "Gracz 3 daj nick:" << endl;
+		cin >> g3;
+		break;
+	case 4:
+		cout << "Gracz 1 daj nick:" << endl;
+		cin >> g1;
+		cout << "Gracz 2 daj nick:" << endl;
+		cin >> g2;
+		cout << "Gracz 3 daj nick:" << endl;
+		cin >> g3;
+		cout << "Gracz 4 daj nick:" << endl;
+		cin >> g4;
+		break;
+	}
+}
+void mecz_2gracze(
+) //2 graczeaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+{
+	for (int i = 1; i < 7; i++) {
+
+		cout << i << " Runda" << endl;
+
+
+		kostka = rand() % 6 + 1;
+		cout << "G1:Rzucam kostka..." << endl;
+		getchar();
+		cout << "Wyszlo:" << kostka << endl;
+		g1punkty = g1punkty + kostka;
+		getchar();
+		kostka = rand() % 6 + 1;
+		cout << "G2:Rzucam kostka..." << endl;
+		getchar();
+		cout << "Wyszlo:" << kostka << endl;
+		g2punkty = g2punkty + kostka;
+		getchar();
+
+		cout << "runda sie zakonczyla." << endl;
+		cout << g1 << "ma:" << g1punkty << endl;
+		cout << g2 << "ma:" << g2punkty << endl;
+		getchar();
+
+		//2 RZUT
+		kostka = rand() % 6 + 1;
+		cout << "G1:Rzucam kostka..." << endl;
+		getchar();
+		cout << "Wyszlo:" << kostka << endl;
+		g1punkty = g1punkty + kostka;
+		getchar();
+		kostka = rand() % 6 + 1;
+		cout << "G2:Rzucam kostka..." << endl;
+		getchar();
+		cout << "Wyszlo:" << kostka << endl;
+		g2punkty = g2punkty + kostka;
+		getchar();
+
+		cout << "runda sie zakonczyla." << endl;
+		cout << g1 << "ma:" << g1punkty << endl;
+		cout << g2 << "ma:" << g2punkty << endl;
+		getchar();
+
+		g1wynik += g1punkty;
+		g2wynik += g2punkty;
+
+		if (g1punkty > g2punkty)
+		{
+			cout << "gratulacje," << g1 << " Wygrales runde!" << endl;
+			getchar();
+
+		}
+		else if(g2punkty > g1punkty)
+		{
+			cout << "gratulacje," << g2 << " Wygrales runde!" << endl;
+			getchar();
+		}
+		else
+		{
+			cout << "no niestety jest remis w tej rundzie" << endl;
+		}
+
+		cout << "ogolny wynik" << endl;
+		cout << g1 << "ma:" << g1wynik << endl;
+		cout << g2 << "ma:" << g2wynik << endl;
+	
+		g1punkty = 0;
+		g2punkty = 0;
+	
+	}
+}
+
+
+
+
+
+void mecz_3gracze() //3 gracze vaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+{
+	for (int i = 1; i < 7; i++) {
+		cout << i << " Runda" << endl;
+		int y = 0;
+
+
+		kostka = rand() % 6 + 1;
+		cout << "G1:Rzucam kostka..." << endl;
+		getchar();
+		cout << "Wyszlo:" << kostka << endl;
+		g1punkty = g1punkty + kostka;
+		getchar();
+		kostka = rand() % 6 + 1;
+		cout << "G2:Rzucam kostka..." << endl;
+		getchar();
+		cout << "Wyszlo:" << kostka << endl;
+		g2punkty = g2punkty + kostka;
+		getchar();
+		kostka = rand() % 6 + 1;
+		cout << "G3:Rzucam kostka..." << endl;
+		getchar();
+		cout << "Wyszlo:" << kostka << endl;
+		g3punkty = g3punkty + kostka;
+		getchar();
+		//RZUT 2
+		kostka = rand() % 6 + 1;
+		cout << "G1:Rzucam kostka..." << endl;
+		getchar();
+		cout << "Wyszlo:" << kostka << endl;
+		g1punkty = g1punkty + kostka;
+		getchar();
+		kostka = rand() % 6 + 1;
+		cout << "G2:Rzucam kostka..." << endl;
+		getchar();
+		cout << "Wyszlo:" << kostka << endl;
+		g2punkty = g2punkty + kostka;
+		getchar();
+		kostka = rand() % 6 + 1;
+		cout << "G3:Rzucam kostka..." << endl;
+		getchar();
+		cout << "Wyszlo:" << kostka << endl;
+		g3punkty = g3punkty + kostka;
+		getchar();
+
+
+		cout << "runda sie zakonczyla." << endl;
+		cout << g1 << "ma:" << g1punkty << endl;
+		cout << g2 << "ma:" << g2punkty << endl;
+		cout << g3 << "ma:" << g3punkty << endl;
+		getchar();
+
+		g1wynik += g1punkty;
+		g2wynik += g2punkty;
+		g3wynik += g3punkty;
+
+		if (g1punkty > g2punkty && g1punkty > g3punkty) // porownanie
+		{
+			cout << "gratulacje," << g1 << " Wygrales runde!" << endl;
+			getchar();
+
+		}
+		else if (g2punkty > g1punkty && g2punkty > g3punkty)
+		{
+			cout << "gratulacje," << g2 << " Wygrales runde!" << endl;
+			getchar();
+		}
+		else if (g3punkty > g1punkty && g3punkty > g2punkty)
+		{
+			cout << "gratulacje," << g3 << " Wygrales runde!" << endl;
+			getchar();
+		}
+		else
+		{
+			cout << "no niestety jest remis w tej rundzie" << endl;
+		}
+		cout << "ogolny wynik" << endl;
+		cout << g1 << "ma:" << g1wynik << endl;
+		cout << g2 << "ma:" << g2wynik << endl;
+		cout << g3 << "ma:" << g3wynik << endl;
+
+		g1punkty = 0;
+		g2punkty = 0;
+		g3punkty = 0;
+	
+	}
+}
+
+
+
+void mecz_4gracze() //4 gracze vaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+{
+	for (int i = 1; i < 7; i++) {
+		cout << i << " Runda" << endl;
+
+
+		kostka = rand() % 6 + 1;
+		cout << " G1: Rzucam kostka..." << endl;
+		getchar();
+		cout << "Wyszlo:" << kostka << endl;
+		g1punkty = g1punkty + kostka;
+		getchar();
+		kostka = rand() % 6 + 1;
+		cout << "G2: Rzucam kostka..." << endl;
+		getchar();
+		cout << "Wyszlo:" << kostka << endl;
+		g2punkty = g2punkty + kostka;
+		getchar();
+		kostka = rand() % 6 + 1;
+		cout << "G3: Rzucam kostka..." << endl;
+		getchar();
+		cout << "Wyszlo:" << kostka << endl;
+		g3punkty = g3punkty + kostka;
+		getchar();
+		kostka = rand() % 6 + 1;
+		cout << "G4: Rzucam kostka..." << endl;
+		getchar();
+		cout << "Wyszlo:" << kostka << endl;
+		g4punkty = g4punkty + kostka;
+		getchar();
+		//RZUT 2
+		kostka = rand() % 6 + 1;
+		cout << " G1: Rzucam kostka..." << endl;
+		getchar();
+		cout << "Wyszlo:" << kostka << endl;
+		g1punkty = g1punkty + kostka;
+		getchar();
+		kostka = rand() % 6 + 1;
+		cout << "G2: Rzucam kostka..." << endl;
+		getchar();
+		cout << "Wyszlo:" << kostka << endl;
+		g2punkty = g2punkty + kostka;
+		getchar();
+		kostka = rand() % 6 + 1;
+		cout << "G3: Rzucam kostka..." << endl;
+		getchar();
+		cout << "Wyszlo:" << kostka << endl;
+		g3punkty = g3punkty + kostka;
+		getchar();
+		kostka = rand() % 6 + 1;
+		cout << "G4: Rzucam kostka..." << endl;
+		getchar();
+		cout << "Wyszlo:" << kostka << endl;
+		g4punkty = g4punkty + kostka;
+		getchar();
+
+
+		cout << "runda sie zakonczyla." << endl;
+		cout << g1 << "ma:" << g1punkty << endl;
+		cout << g2 << "ma:" << g2punkty << endl;
+		cout << g3 << "ma:" << g3punkty << endl;
+		cout << g4 << "ma:" << g4punkty << endl;
+		getchar();
+
+		g1wynik += g1punkty;
+		g2wynik += g2punkty;
+		g3wynik += g3punkty;
+		g4wynik += g4punkty;
+
+		if (g1punkty > g2punkty && g1punkty > g3punkty && g1punkty > g4punkty)
+		{
+			cout << "gratulacje, " << g1 << " Wygrales runde!" << endl;
+			getchar();
+
+		}
+		else if (g2punkty > g1punkty && g2punkty > g3punkty && g2punkty > g4punkty)
+		{
+			cout << "gratulacje, " << g2 << " Wygrales runde!" << endl;
+			getchar();
+		}
+		else if (g3punkty > g1punkty && g3punkty > g2punkty && g3punkty > g4punkty)
+		{
+			cout << "gratulacje, " << g3 << " Wygrales runde!" << endl;
+			getchar();
+		}
+		else
+		{
+			cout << "gratulacje, " << g4 << "Wygrales runde!" << endl;
+		}
+		cout << "ogolny wynik" << endl;
+		cout << g1 << "ma:" << g1wynik << endl;
+		cout << g2 << "ma:" << g2wynik << endl;
+		cout << g3 << "ma:" << g3wynik << endl;
+		cout << g4 << "ma:" << g4wynik << endl;
+
+		g1punkty = 0;
+		g2punkty = 0;
+		g3punkty = 0;
+		g4punkty = 0;
+	}
+	
+}
+
+
+
+
+
+int main()
+{
+	srand(time(NULL));
+	ile_graczy();
+	nick();
+	if (gracze == 2)
+	{
+		mecz_2gracze();
+		if (g1wynik > g2wynik)
+		{
+			cout << "gratulacje " << g1 << " wygrales gre" << endl;
+		}
+		else if (g2wynik > g1wynik)
+		{
+			cout << "gratulacje " << g2 << " wygrales gre" << endl;
+		}
+		else
+		{
+			cout << "jest remis. dodatkowa runda." << endl;
+			getchar();
+			kostka = rand() % 6 + 1;
+			cout << "G1:Rzucam kostka..." << endl;
+			getchar();
+			cout << "Wyszlo:" << kostka << endl;
+			g1punkty = g1punkty + kostka;
+			getchar();
+			kostka = rand() % 6 + 1;
+			cout << "G2:Rzucam kostka..." << endl;
+			getchar();
+			cout << "Wyszlo:" << kostka << endl;
+			g2punkty = g2punkty + kostka;
+			getchar();
+
+			cout << "runda sie zakonczyla." << endl;
+			cout << g1 << "ma:" << g1punkty << endl;
+			cout << g2 << "ma:" << g2punkty << endl;
+			getchar();
+
+			//2 RZUT
+			kostka = rand() % 6 + 1;
+			cout << "G1:Rzucam kostka..." << endl;
+			getchar();
+			cout << "Wyszlo:" << kostka << endl;
+			g1punkty = g1punkty + kostka;
+			getchar();
+			kostka = rand() % 6 + 1;
+			cout << "G2:Rzucam kostka..." << endl;
+			getchar();
+			cout << "Wyszlo:" << kostka << endl;
+			g2punkty = g2punkty + kostka;
+			getchar();
+
+			g1wynik += g1punkty;
+			g2wynik += g2punkty;
+
+
+		}
+
+
+	}
+	else if (gracze == 3)
+	{
+		mecz_3gracze();
+
+		if (g1wynik > g2wynik && g1wynik > g3wynik)
+		{
+			cout << "gratulacje " << g1 << " wygrales gre" << endl;
+		}
+		else if (g2wynik > g1wynik && g2wynik >g3wynik)
+		{
+			cout << "gratulacje " << g2 << " wygrales gre" << endl;
+		}
+		else
+		{
+			cout << "gratuacje" << g3 << "wygrales gre" << endl;
+		}
+	}
+	else if (gracze == 4)
+	{
+		mecz_4gracze();
+
+		if (g1wynik > g2wynik && g1wynik > g3wynik && g1wynik > g4wynik)
+		{
+			cout << "gratulacje " << g1 << " wygrales gre" << endl;
+		}
+		else if (g2wynik > g1wynik && g2wynik > g3wynik && g2wynik > g4wynik)
+		{
+			cout << "gratulacje " << g2 << " wygrales gre" << endl;
+		}
+		else if (g3wynik > g1wynik && g3wynik > g2wynik && g3wynik > g4wynik)
+		{
+			cout << "gratuacje " << g3 << " wygrales gre" << endl;
+		}
+		else
+		{
+			cout << "gratulacje " << g4 << " wygrales gre" << endl;
+		}
+	}
+	return 0;
+}
