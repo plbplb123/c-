@@ -1,4 +1,4 @@
-// Gra Kościana Łukasz Pałubicki & Szymon Szramowski
+// Gra Kościana By: Łukasz Pałubicki & Szymon Szramowski
 
 #include <iostream>
 #include <stdio.h>  
