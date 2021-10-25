@@ -1,3 +1,5 @@
+// Gra Kościana Łukasz Pałubicki & Szymon Szramowski
+
 #include <iostream>
 #include <stdio.h>  
 #include <stdlib.h>   
