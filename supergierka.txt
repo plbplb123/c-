@@ -1,0 +1,1055 @@
+/******************************************************************************
+
+                              Online C++ Compiler.
+               Code, Compile, Run and Debug C++ program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+
+#include <iostream>
+#include <stdlib.h>
+#include <time.h> 
+int licznik = 0;
+using namespace std;
+string nick;
+//Level
+int wymaganyexp = 1000;
+//Mainmenu
+int mainmenu;
+int wybor;
+//Statystyki
+int sila=1,zwinnosc=1,percepcja=1,szczescie=1,inteligencja=1,experience=1,level=1,hp=250,pktdos,hajs=1000;
+int skillset;
+int klasa;
+string onwog;
+int onwog2;
+int expienie;
+int i;
+bool a;
+//Minigra
+int min,max;
+int finalexpgobliny;
+int zgadanie;
+int expieniewybor;
+int iSecret = 6;
+int minigierka = 1;
+//Wioska
+int wioskawybor;
+int koszary;
+int murzynpierwraz;
+int upgrade; // KOSZARY
+//boss
+int hpbossa = 3000;
+int wyborboss;
+int typataku;
+//WALKAPALAC
+int counter = 11;
+
+
+struct enemy
+{
+	int hp;
+	int ad;
+	int dodgchanc;
+};
+
+
+
+
+
+
+void boss()
+{
+	cout << "Wkraczasz do jaskini wielkiego kosmicznego wensza lvl" << endl;
+	getchar();
+	cout << "Wonsz cie jumpuje i musisz z nim walczyc." << endl;
+	getchar();
+	while(hpbossa < 0)
+	{
+		
+		cout << "Co chcesz zrobic: 1 - Walka 2 - Healek 3 - Ucieczka" << endl;
+		cin >> wyborboss;
+		switch(wyborboss)
+		{
+			case 1: {
+				cout << "Jaki typ ataku? 1 - rzut kamieniem 2 - listwa 3 - atak muzgiem" << endl;
+				cin >> typataku;
+				if(typataku==1)
+				{
+					cout << "Rzucasz w wensza duzym kamieniem" << endl; getchar();
+					hpbossa = hpbossa - percepcja*30 ;
+				}
+				break;
+			}
+		}
+		
+	}
+	
+}
+//wyborklasy.po lewej sa staty po prawej opis
+void wyborklasy()
+{
+	        cout << "Zanim zaczniesz: Wybierz klase:| 1 - Paladyn| 2 - Barbarzynca| 3 - Cienkus| 4 - Skrytobojca" << endl;
+	        cout << "Zanim zaczniesz: Wybierz klase:| 5 - Mnich |6 - Tytan | 7 - Kaplan| 8 - Spellweaver | 9 - Bard" << endl;
+        cin >> klasa;
+        switch(klasa)
+        {
+        	case 1:{ sila=5;zwinnosc=3;percepcja=1;szczescie=4;inteligencja=5;experience=1;level=1;hp=300;skillset=1;cout<<"Jestes Paladynem! - Masz Staty Min-Max i leczenie jak i atak"<<endl;break;}
+        	case 2:{ sila=7,zwinnosc=5;percepcja=1;szczescie=1;inteligencja=1;experience=1;level=1;hp=350;skillset=2;cout<<"Jestes Barbarzynca - Masz najwieksza sile, ale jestes bezmozgiem. Twoja specjalnosc to nordycka walka"<<endl;break;}
+        	case 3:{ sila=1,zwinnosc=1;percepcja=1;szczescie=9;inteligencja=0;experience=1;level=1;hp=20;skillset=3;cout<<"Jestes Cienkus - Masz farta, ale wszystkie twoje staty sa slabe, i inteligencje masz najnizsza w grze, twoja specjalnosc to oglupienie"<<endl;break;}
+        	case 4: {sila=6;zwinnosc=10;percepcja=5;szczescie=4;inteligencja=3;experience=1;level=1;hp=120;skillset=4;cout<<"Jestes Skrytobójca - Masz najwieksza zwinnosc i srednia sile. Jestes w stanie zakrasc sie nawet do palacu sultana"<<endl;break;}
+        	case 5:{ sila=4;zwinnosc=3;percepcja=1;szczescie=2;inteligencja=5;experience=1;level=1;hp=150;skillset=5;cout<<"Jestes Mnichem! - 	Jestes oaza spokoju i masz moc ziemi aby cie wesprzec"<<endl;break;}
+        	case 6:{ sila=7,zwinnosc=5;percepcja=1;szczescie=1;inteligencja=1;experience=1;level=1;hp=125;skillset=6;cout<<"Jestes Tytanem! - Jestes zwyklym czlowiekiem z ukryta moca w sobie."<<endl;break;}
+        	case 7:{ sila=4,zwinnosc=3;percepcja=5;szczescie=3;inteligencja=4;experience=1;level=1;hp=150;skillset=7;cout<<"Jestes Kaplanem - W imieniu boga uleczysz siebie i zgladzisz wszystkich heretykow"<<endl;break;}
+        	case 8: {sila=5;zwinnosc=5;percepcja=3;szczescie=4;inteligencja=2;experience=1;level=1;hp=125;skillset=8;cout<<"Jestes Spellweaver - Zaklecia to twoja druga natura."<<endl;break;}
+        	case 9: {sila=4;zwinnosc=3;percepcja=4;szczescie=1;inteligencja=6;experience=1;level=1;hp=125;skillset=9;cout<<"Jestes Bard - Twoje piosenki cie podniosa na duchu ale niektorzy beda mogli go wyzionac"<<endl;break;}
+		}
+}
+//skille postacid
+
+//PALADYN
+int paladynskille(int ad,int fart,int hpfrend)
+{
+	int skillwybor= 0;
+	cout << "KTOREGO SKILLA WYBIERASZ? 1 - Holy Sword 2 - Godly Heal" << endl;
+	cin >> skillwybor;
+	if(skillwybor==1)
+	{
+		cout << "- ZA SPRAWA BOGA MASZ UMRZEC! Zadajesz: " << ad+ad*fart*3*1 << endl;
+		return ad+ad*fart*3*1;
+	}
+	else if(skillwybor==2)
+	{
+		hpfrend = hpfrend + 30*sila;
+		cout << "- KRUUCJAATAAA! Leczysz sie: 90HP" << endl;
+		return 90;
+	}
+	
+}
+int barbarzyncaskille(int n,int ad,int fart,int hpfrend)
+{
+	int skillwybor= 0;
+	cout << "KTOREGO SKILLA WYBIERASZ? 1 - Viking Rage 2 - Nordic Winds" << endl;
+		cin >> skillwybor;
+	if(skillwybor==1)
+	{
+		cout << "- AAAAAAAAA! Zadajesz: " << ad+ad+30<< endl;
+		return ad+ad+30;
+	}
+	else
+	{
+		ad = ad+5;
+		cout << "- ZA ODYYNAAAA! Zwiekszyles Sile o 5 " << endl;
+		return ad+5;
+	}
+}
+
+int cienkusskille(int n,int fart, int ad)
+{
+	int skillwybor= 0;
+	cout << "KTOREGO SKILLA WYBIERASZ? 1 - Oglupienie 2 - Erupcja" << endl;
+			cin >> skillwybor;
+	if(skillwybor==1)
+	{
+		cout << "- PEWNIE ZROBIE! Zadajesz: " << fart*3<< endl;
+		return fart*3;
+	}
+	else
+	{
+	ad*fart;
+		cout << "- Pomoz ktos? Nagle pojawia sie goblin, ktory oblewa wrogow lawa: " << ad*fart << endl;
+		return ad*fart;
+}
+}
+int assasinskille(int n,int ad,int zwinnos,int fart)
+{
+	int skillwybor= 0;
+	cout << "KTOREGO SKILLA WYBIERASZ? 1 - Od tylca 2 - Knife shot" << endl;
+				cin >> skillwybor;
+	if(skillwybor==1)
+	{
+		n=n-ad*zwinnos;
+		cout << "- ASSASYNACJA LESS GO! Zadajesz: " << ad*zwinnos  << endl;
+		return ad*zwinnos;
+	}
+	else
+	{
+		cout << "- Trickshot! Rzucasz nozem i zadajesz: " << ad*fart*zwinnos*0.5  << endl;
+		return ad*fart*zwinnos*0.5;
+}
+}
+int mnichskille(int n,int ad,int zwinnos,int iq, int hp)
+{
+	int skillwybor= 0;
+	cout << "KTOREGO SKILLA WYBIERASZ? 1 - Sekret Mnicha 2 - Medytacja" << endl;
+					cin >> skillwybor;
+	if(skillwybor==1)
+	{
+		cout << "- MOC ZIEMI LESS GOO! " << ad+zwinnos*iq << endl;
+		return ad+zwinnos*iq;
+	}
+	else
+	{
+		cout << "- Umamale! Medytujesz. Leczysz sie za: " << 69*iq   << endl;
+		
+		return 69*iq;
+}
+}
+int tytanskille(int n,int hp, int sila, int counter)
+
+{
+	int skillwybor= 0;
+	cout << "KTOREGO SKILLA WYBIERASZ? 1 - Sekretna Moc ["<<licznik<<"] 2 - Eksplozja" << endl;
+	cin >> skillwybor;
+	if(skillwybor==1)
+	{
+		if(counter % 6 == 0)
+		{
+			cout << "- ZACZYNAMY! Zamieniasz sie w tytana. HP wzroslo o 500HP (rowniez overheal) (wymaga 6 tur bez uzywania tego spella)";
+			return 500;
+		}
+		else
+		{
+			cout << "Zaklecie sie nie udalo. Ciekawe czemu? Odczekane tury:" << counter << endl;
+		}
+	}
+	if(skillwybor==2)
+	{
+		cout << "Otwierasz pomniejszy talizman i rzucasz go w przeciwnika, eksplozja bije go za: " << 64*2  << endl;
+		
+		return 64*2;
+	}
+	
+}
+
+int kaplankille(int n,int hp,int inteligencja,int zwinnosc)
+{
+	int skillwybor= 0;
+	cout << "KTOREGO SKILLA WYBIERASZ? 1 - Poswiecenie 2 - Boza denancuacja" << endl;
+		if(skillwybor==1)
+	{
+		cout << "- TO JEST EKSCYTUJACE! Robisz poswiecenie w postaci wysluchania piosenki justyny bieber, bog szanuje twoja postawe i daje ci kebsa. Kebab leczy cie za:" << inteligencja*15 << endl;
+		return inteligencja*15;
+	}
+	else
+	{
+		cout << "- BOG PLUJE NA CIEBIE! Wyjmujesz KRZYZ i zaczynaja leciec fireballe w przeciwnika, zadajesz " << inteligencja*zwinnosc+0.5*inteligencja   << endl;
+		return inteligencja*zwinnosc+0.5*inteligencja;
+	
+}
+}
+int spellweaverskille(int n,int inteligencja,int sila)
+{
+	int skillwybor = 0;
+	cout << "KTOREGO SKILLA WYBIERASZ? 1 - Fireball 2 - Maximum Effort" << endl;
+			if(skillwybor==1)
+	{
+		cout << "Nawalasz Fireballem, zadajesz:" << inteligencja*sila+5 << endl;
+		return inteligencja*sila+5;
+	}
+	else
+	{
+		cout << "- No to co jedziemy. Spamujesz wszystkimi spellami, zadajesz: " << inteligencja*19   << endl;
+		return inteligencja*19;
+	
+}
+}
+
+int bardskille(int n,int hp, int inteligencja)
+{
+	int skillwybor= 0;
+	cout << "KTOREGO SKILLA WYBIERASZ? 1 - Leczaca Piosenka 2 - Justin Bieber" << endl;
+				if(skillwybor==1)
+	{
+		cout << "Puszczasz Jamaica Type Beats na sredniowiecznym radiu, leczysz sie za fulla i 69HP overheala." << endl;
+		return 189;
+	}
+	else
+	{
+		cout << "	BEEEEJBYYY BEEEJEBBBYYY OOOOOOO. Przeciwnik po uslyszeniu tego pieknego kawalku postanowil popelnic samobojstwo. Niestety mu sie nie udalo ale zadales mu: " << inteligencja*12*3 << " Jako traume na cale zycie."   << endl;
+		return inteligencja*12*3;
+	
+}
+}
+void zaginionypalac2()
+{
+//Ustawienia bandyty:
+struct enemy Magik; Magik.ad = 4; Magik.dodgchanc = 0.3; Magik.hp = 400;
+int hpbandyta;
+int zatruty=0;
+	int check;
+        int palac_enemy = 1; //rand() % 2 + 1;
+        if(palac_enemy = 1)
+        {
+        	system("CLS");
+        	int naogniu=0;
+            int bandytawalka = Magik.hp;
+            while(bandytawalka > 0 or hp > 0)
+            {            cout << "Magik w szatach teleportuje sie przed toba i domaga sie twojej partycypacji w jego eksperymencie... Jestes glownym obiektem." << endl; getchar();
+            						system("CLS");
+            						            	if(naogniu==1)
+            	{
+            		hp-=20;
+            		cout << "Otrzymujesz obrazenia od ognia!" << endl; getchar();
+				}
+				  	if(zatruty==1)
+            	{
+            		hp-=10;
+            		cout << "Otrzymujesz obrazenia od zatrucia!" << endl; getchar();
+				}
+				int wyborwalka;
+            	licznik++;
+            	cout << "Co robisz? 1 - SKILL 2 - Zwykly atak" << endl;
+            	cout << "TWOJE HP: "<<hp<<"ENEMY HP: "<<bandytawalka << endl;
+            	cin >> wyborwalka;
+				if(wyborwalka==1)
+				{
+				
+            			switch(skillset)
+            			{
+            				
+            				case 1:
+            				check = paladynskille(sila,szczescie,hp);
+            				if(check==90)
+            				{
+            					hp =hp + 90; getchar();
+							}
+							else if(check == sila+sila*szczescie*3*1);
+							{
+							bandytawalka -=sila+sila*szczescie*3*1;getchar();
+							}
+							 break; 
+							 
+							 
+							case 2: //BARBARZYNCA
+							check = barbarzyncaskille(bandytawalka,sila,szczescie,hp);
+							if(check==sila+sila+30)
+							{
+								bandytawalka -= barbarzyncaskille(bandytawalka,sila,szczescie,hp);getchar(); break;
+							}
+							else if(check==sila+5)
+							{
+								sila = sila+5;getchar();
+							}
+							break; 
+							
+							
+							case 3:bandytawalka -= cienkusskille(hpbandyta,szczescie,sila);getchar();break; 
+
+
+
+							case 4: bandytawalka -= assasinskille(hpbandyta,sila,zwinnosc,szczescie); getchar();
+							break;
+							
+							
+							case 5:
+							check = mnichskille(hpbandyta,sila,zwinnosc,inteligencja,hp); 
+							if(check == 69*inteligencja )
+							{
+							
+							hp += 69*inteligencja;getchar();
+							break; 
+						}
+							else if(check == sila+zwinnosc*inteligencja)
+							{
+								bandytawalka -=mnichskille(hpbandyta,sila,zwinnosc,inteligencja,hp);getchar();break; 
+							}
+							
+							
+							
+							case 6: check = tytanskille(hpbandyta,hp,sila,licznik);
+							if(check==500)
+							{
+								hp+=500;getchar();break; 
+							}
+							else if(check==64*2)
+							{
+								bandytawalka -= tytanskille(hpbandyta,hp,sila,licznik);getchar();break; 
+							}
+							break; 
+							case 7: check = kaplankille(hpbandyta,hp,inteligencja,zwinnosc);
+							if(check == inteligencja*zwinnosc+0.5*inteligencja)
+							{
+							bandytawalka -= inteligencja*zwinnosc+0.5*inteligencja;getchar();break; 
+							}
+							else
+							{
+								hp+=inteligencja*15;break; 
+							}
+							break; 
+							case 8: bandytawalka-=spellweaverskille(hpbandyta,inteligencja,sila);
+							 break;
+							case 9:check = bardskille(hpbandyta,hp,inteligencja);
+							if(check==inteligencja*12*3)
+							{
+								bandytawalka-=bardskille(hpbandyta,hp,inteligencja);getchar();break; 
+							}
+							else
+							{
+							 hp+=189;getchar();break; 
+							}
+							break;
+						}
+            			
+					
+
+				}
+				else
+				{
+					
+						}
+				// TURA MAGIKA(BANDYTY)
+				int bandytaatak = rand() % 6+1;
+				switch(bandytaatak){
+				
+				case 1:
+				{
+					cout << "- Czy jestes w stanie przetrwac perfekcyjnosc moich zaklec? Rzuca w ciebie Nozem, zadaje:" << Magik.ad * 9 << endl;
+					getchar();
+					hp -= Magik.ad * 5;getchar();
+					break;
+				}
+				case 2:
+				{
+					cout << "- To bedzie interesujacy... eksperyment... Magik przyzywa zywy miotacz ognia zadajaac ci 20hp co runde." << endl;
+					getchar(); int naogniu=1;
+					break;
+						}
+				case 3:
+				{
+					cout << "- Wiec... Nazywasz sie "<< nick << "? coz, kolejna nazwa do kolekcji. Magik leczy sie za 30hp" << endl;
+					bandytawalka+=30;
+					break;
+						}		
+						
+					
+				case 4:
+				{
+					cout << "- CZUJ TEN TRUJACY GAZ HAHAHAHAHAHA! Zostales zatruty przez gas Otrzymujesz 10hp co ture.. " << endl;
+					getchar();
+					zatruty = 1;
+					break;
+				}
+				case 5:
+				{
+					cout << "- Czy jestes w stanie przetrwac perfekcyjnosc moich zaklec? Rzuca w ciebie Nozem, zadaje:" << Magik.ad * 9 << endl;
+					getchar();
+					hp -= Magik.ad * 5;getchar();
+					break;
+				}
+				case 6:
+				{
+					cout << "- Czy jestes w stanie przetrwac perfekcyjnosc moich zaklec? Rzuca w ciebie Nozem, zadaje:" << Magik.ad * 9 << endl;
+					getchar();
+					hp -= Magik.ad * 5;getchar();
+					break;
+				}
+			}
+            	
+			}
+            
+            
+			}
+
+}
+
+
+void zaginionypalac()
+{
+//Ustawienia bandyty:
+struct enemy Bandyta; Bandyta.ad = 4; Bandyta.dodgchanc = 0.3; Bandyta.hp = 350;
+
+	int check;
+        int palac_enemy = 1; //rand() % 2 + 1;
+        if(palac_enemy = 1)
+        {
+        	int hpbandyta = 130;
+        	int skillsetbandyta = 69;
+            cout << "Bandyta ci grozi kosa!" << endl;
+            int bandytawalka = 350;
+            while(bandytawalka > 0 or hp > 0)
+            {
+            						system("CLS");
+				int wyborwalka;
+            	licznik++;
+            	cout << "Co robisz? 1 - SKILL 2 - Zwykly atak" << endl;
+            	cout << "TWOJE HP: "<<hp<<"ENEMY HP: "<<bandytawalka << endl;
+            	cin >> wyborwalka;
+				if(wyborwalka==1)
+				{
+				
+            			switch(skillset)
+            			{
+            				
+            				case 1:
+            				check = paladynskille(sila,szczescie,hp);
+            				if(check==90)
+            				{
+            					hp =hp + 90; getchar();
+							}
+							else if(check == sila+sila*szczescie*3*1);
+							{
+							bandytawalka -=sila+sila*szczescie*3*1;getchar();
+							}
+							 break; 
+							 
+							 
+							case 2: //BARBARZYNCA
+							check = barbarzyncaskille(bandytawalka,sila,szczescie,hp);
+							if(check==sila+sila+30)
+							{
+								bandytawalka -= barbarzyncaskille(bandytawalka,sila,szczescie,hp);getchar(); break;
+							}
+							else if(check==sila+5)
+							{
+								sila = sila+5;getchar();
+							}
+							break; 
+							
+							
+							case 3:bandytawalka -= cienkusskille(hpbandyta,szczescie,sila);getchar();break; 
+
+
+
+							case 4: bandytawalka -= assasinskille(hpbandyta,sila,zwinnosc,szczescie); getchar();
+							break;
+							
+							
+							case 5:
+							check = mnichskille(hpbandyta,sila,zwinnosc,inteligencja,hp); 
+							if(check == 69*inteligencja )
+							{
+							
+							hp += 69*inteligencja;getchar();
+							break; 
+						}
+							else if(check == sila+zwinnosc*inteligencja)
+							{
+								bandytawalka -=mnichskille(hpbandyta,sila,zwinnosc,inteligencja,hp);getchar();break; 
+							}
+							
+							
+							
+							case 6: check = tytanskille(hpbandyta,hp,sila,licznik);
+							if(check==500)
+							{
+								hp+=500;getchar();break; 
+							}
+							else if(check==64*2)
+							{
+								bandytawalka -= tytanskille(hpbandyta,hp,sila,licznik);getchar();break; 
+							}
+							break; 
+							case 7: check = kaplankille(hpbandyta,hp,inteligencja,zwinnosc);
+							if(check == inteligencja*zwinnosc+0.5*inteligencja)
+							{
+							bandytawalka -= inteligencja*zwinnosc+0.5*inteligencja;getchar();break; 
+							}
+							else
+							{
+								hp+=inteligencja*15;break; 
+							}
+							break; 
+							case 8: bandytawalka-=spellweaverskille(hpbandyta,inteligencja,sila);
+							 break;
+							case 9:check = bardskille(hpbandyta,hp,inteligencja);
+							if(check==inteligencja*12*3)
+							{
+								bandytawalka-=bardskille(hpbandyta,hp,inteligencja);getchar();break; 
+							}
+							else
+							{
+							 hp+=189;getchar();break; 
+							}
+							break;
+						}
+            			
+					
+
+				}
+				else
+				{
+					
+						}
+				// TURA BANDYTY
+				int bandytaatak = rand() % 6+1;
+				switch(bandytaatak){
+				
+				case 1:
+				{
+					cout << "- DAWAJ ROBUXY NIE ZARTUJE! Bandyta Kosi cie w zebra za:" << Bandyta.ad * 10 << endl;
+					getchar();
+					hp -= Bandyta.ad*10;getchar();
+					break;
+				}
+				case 2:
+				{
+					cout << "- NO TO ZROBIE! Bandyta uzyl oglupienia - 0.5 sily i - 0.5 inteligencji przez reszte meczu." << endl;
+					sila -= 0.5; inteligencja -= 0.5;getchar();
+					break;
+						}
+				case 3:
+				{
+					cout << "- Kurcze ale fajny chlebek z ikei kupilem! Bandyta healuje sie za 30% HP" << endl;
+					bandytawalka+=0.3*Bandyta.hp;getchar();
+					break;
+						}		
+						
+					
+				case 4:
+				{
+					cout << "- DAWAJ ROBUXY NIE ZARTUJE! Bandyta Kosi cie w zebra za:" << Bandyta.ad * 3 << endl;
+					getchar();
+					hp -= Bandyta.ad*10;getchar();
+					break;
+				}
+				case 5:
+				{
+					cout << "- DAWAJ ROBUXY NIE ZARTUJE! Bandyta Kosi cie w zebra za:" << Bandyta.ad * 3 << endl;
+					getchar();
+					hp -= Bandyta.ad*10;getchar();
+					break;
+				}
+				case 6:
+				{
+					cout << "- DAWAJ ROBUXY NIE ZARTUJE! Bandyta Kosi cie w zebra za:" << Bandyta.ad * 3 << endl;
+					getchar();
+					hp -= Bandyta.ad*10;getchar();
+					break;
+				}
+			}
+            	
+			}
+            
+            
+			}
+
+}
+
+
+void wodospad1()
+{
+//Ustawienia bandyty:
+struct enemy Syrena; Syrena.ad = 9; Syrena.dodgchanc = 0.3; Syrena.hp = 1000;
+
+	int check;
+        int palac_enemy = 1; //rand() % 2 + 1;
+        if(palac_enemy = 1)
+        {
+        	int hpbandyta = 130;
+        	int skillsetbandyta = 69;
+            int bandytawalka = Syrena.hp;
+            						system("CLS");
+            						int countdown = 0;
+            while(bandytawalka > 0 or hp > 0)
+            {
+            	if(countdown >= 0)
+            	{
+            		cout << "Minelo " << countdown << "tur od wyroku smierci!" << endl;;
+				}
+				if(countdown<=10)
+				{
+					hp = 0;
+				}
+				int wyborwalka;
+            	licznik++;
+            	cout << "Co robisz? 1 - SKILL 2 - Zwykly atak" << endl;
+            	cout << "TWOJE HP: "<<hp<<"ENEMY HP: "<<bandytawalka << endl;
+            	cin >> wyborwalka;
+				if(wyborwalka==1)
+				{
+				
+            			switch(skillset)
+            			{
+            				
+            				case 1:
+            				check = paladynskille(sila,szczescie,hp);
+            				if(check==90)
+            				{
+            					hp =hp + 90; getchar();
+							}
+							else if(check == sila+sila*szczescie*3*1);
+							{
+							bandytawalka -=sila+sila*szczescie*3*1;getchar();
+							}
+							 break; 
+							 
+							 
+							case 2: //BARBARZYNCA
+							check = barbarzyncaskille(bandytawalka,sila,szczescie,hp);
+							if(check==sila+sila+30)
+							{
+								bandytawalka -= barbarzyncaskille(bandytawalka,sila,szczescie,hp);getchar(); break;
+							}
+							else if(check==sila+5)
+							{
+								sila = sila+5;getchar();
+							}
+							break; 
+							
+							
+							case 3:bandytawalka -= cienkusskille(hpbandyta,szczescie,sila);getchar();break; 
+
+
+
+							case 4: bandytawalka -= assasinskille(hpbandyta,sila,zwinnosc,szczescie); getchar();
+							break;
+							
+							
+							case 5:
+							check = mnichskille(hpbandyta,sila,zwinnosc,inteligencja,hp); 
+							if(check == 69*inteligencja )
+							{
+							
+							hp += 69*inteligencja;getchar();
+							break; 
+						}
+							else if(check == sila+zwinnosc*inteligencja)
+							{
+								bandytawalka -=mnichskille(hpbandyta,sila,zwinnosc,inteligencja,hp);getchar();break; 
+							}
+							
+							
+							
+							case 6: check = tytanskille(hpbandyta,hp,sila,licznik);
+							if(check==500)
+							{
+								hp+=500;getchar();break; 
+							}
+							else if(check==64*2)
+							{
+								bandytawalka -= tytanskille(hpbandyta,hp,sila,licznik);getchar();break; 
+							}
+							break; 
+							case 7: check = kaplankille(hpbandyta,hp,inteligencja,zwinnosc);
+							if(check == inteligencja*zwinnosc+0.5*inteligencja)
+							{
+							bandytawalka -= inteligencja*zwinnosc+0.5*inteligencja;getchar();break; 
+							}
+							else
+							{
+								hp+=inteligencja*15;break; 
+							}
+							break; 
+							case 8: bandytawalka-=spellweaverskille(hpbandyta,inteligencja,sila);
+							 break;
+							case 9:check = bardskille(hpbandyta,hp,inteligencja);
+							if(check==inteligencja*12*3)
+							{
+								bandytawalka-=bardskille(hpbandyta,hp,inteligencja);getchar();break; 
+							}
+							else
+							{
+							 hp+=189;getchar();break; 
+							}
+							break;
+						}
+            			
+					
+
+				}
+				else
+				{
+					
+						}
+				// TURA BANDYTY
+				int bandytaatak = rand() % 6+1;
+				if(bandytaatak == 2 && countdown==1)
+				{
+					bandytaatak == 6;
+				}
+				switch(bandytaatak){
+				
+				case 1:
+				{
+					cout << "- Wygladasz jak obiad... Chwila to nie twoje imie? "<< nick <<"? Glupie imie. Obiad lepsze. O wiele... Zostales Zanurzony w wodzie! Nie mozesz oddychac! -0.5 Zwinnosci -1 Sily" << endl;
+					getchar();
+					zwinnosc -= 0.5; sila -= 1;
+					break;
+				}
+				case 2:
+				{
+					cout << "My, syreny jestesmy zagrozonym gatunkiem, ludzie nie sa. Wiesz do czego zmierzam? Syrena Zaczyna wysysac twoja dusze! Jesli za 10 tur ta walka sie nie skonczy, giniesz!" << endl;
+					countdown = 1; getchar();
+					break;
+						}
+				case 3:
+				{
+					cout << "- Cholerne Zwierze! Syrena przyzywa lodowate kolce z wody! Zadala ci:" << Syrena.ad*4+10 << endl;
+					hp -= Syrena.ad*4+10; getchar();
+					break;
+						}		
+						
+					
+				case 4:
+				{
+					cout << "- Cholerne Zwierze! Syrena przyzywa lodowate kolce z wody! Zadala ci:" << Syrena.ad*4+10 << endl;
+					hp -= Syrena.ad*4+10; getchar();
+					break;
+				}
+				case 5:
+				{
+					cout << "- Cholerne Zwierze! Syrena przyzywa lodowate kolce z wody! Zadala ci:" << Syrena.ad*4+10 << endl;
+					hp -= Syrena.ad*4+10; getchar();
+					break;
+				}
+				case 6:
+				{
+					cout << "Slyszalam ze podobno lubicie krwawic Hah! Syrena wbila w ciebie kolca od dolu! Zadaje: " << Syrena.ad*7 << endl;
+					getchar();
+					hp -= Syrena.ad*7;
+					break;
+				}
+			}
+            	
+			}
+            
+            
+			}
+
+}
+
+
+int main()
+{
+setlocale(LC_CTYPE, "Polish");
+      srand (time(NULL));
+
+ 
+    cout<<"Witaj, przybyszu! Podaj swój nick:" << endl;
+    cin>>nick;
+    cout << "A wiec twój nick to " << nick << endl;
+    cout << "Ciekawa nazwa, ale to nie czas na to!" << endl;
+    cout << "=====MAIN MENU=====" << endl;
+    cout << "=1 START - Nowa Gra =" << endl;
+    cout << "=2 EXIT  - Koniec   =" << endl;
+    cout << "===================" << endl;
+    cin >> mainmenu;
+    if(mainmenu == 1)
+    {
+    wyborklasy();
+    cout << "Budzisz sie w lesie przy kamieniu, cos czujesz ze to bedzie ekscytujaca podroz!" << endl;
+    cin;
+		int maxhp = hp;
+       // GRA
+         for(;;)
+         {
+             bool a = false;
+             wybor = 0;
+             									//LEVELOWANIE
+             if(experience>wymaganyexp)
+             {
+             	level++;
+             	pktdos++;
+             	cout << "LEVEL UP! MASZ TERAZ:" << level << "Lvl i masz punkt doswiadczenia, ktory mozesz wykorzystac w koszarach w wiosce!" << endl;
+             	wymaganyexp+=250;
+             	experience=0;
+             	
+			 }
+             cout << "*****************************************************" << endl;
+             cout << "*Twoje opcje:                                         *" << endl;
+             cout << "Opcje:1: Statystyki, 2:Las, 3:Wioska 4: BOSS" << endl;
+             cout << "*co wybierasz?                                        *" << endl;
+             cout << "*                                                     *" << endl;
+             cout << "*****************************************************" << endl;
+             cin >>  wybor;
+             cout << "Napisz Numer ponownie, aby Potwierdzic." << endl;
+             cin >> onwog;
+             switch(wybor)
+             {
+                 case 1: { 
+                cout<<"**************************" << endl;
+                cout<<"*Statystyki:" << endl; 
+                cout<<"*Sila:" << sila << endl;
+                cout<<"*Zwinnosc:" << zwinnosc<< endl;
+                cout<<"*Percepcja:"<< percepcja << endl; 
+                cout<<"*Szczescie:" << szczescie << endl;
+                cout<<"*Inteligencja" << inteligencja << endl;
+                cout<<"*LEVEL:" << level << endl;
+                cout<<"*EXP:" << experience << endl;
+                cout<<"*HP[]:" << hp << endl;
+                cout<<"*Hajs[$]:" << hajs << endl;
+                cout<<"**************************" << endl;
+                cin >> onwog;
+                break;
+                                	while(expienie = 5)
+                	{
+                		
+                		
+                		
+                		
+                		
+                		
+                		
+                		
+                case 2: //EXPIENIE
+                {
+
+					
+                    cout<<"******************************************************" << endl;
+                    cout << "Widzisz Czarna uliczke, gdzie chcesz skrecic?" << endl;
+                    cout << "1- Opuszczony Palac | 2 - Wodospad 3 - Zawroc" << endl;
+                    cout << "HP:" << hp << endl;
+                    cout<<"******************************************************" << endl;
+                      cin >> expienie;
+                      switch(expienie)
+                      {
+                      //palac
+					  case 1: {
+                      	int palac_enemy = rand() % 2 + 1;
+                      	if(palac_enemy == 1)
+                      	{
+                      		int pierwotnasila = sila;
+                      		int pierwotnainteligencja = inteligencja;
+                      		zaginionypalac();
+                      		system("CLS");
+			cout << "Gratulacje! Wygrales z Bandyta, Doswiadczenie: +  500 | Hajs + $20" << endl;
+			experience+=500; hajs+=20;
+			hp=maxhp; sila = pierwotnasila;
+			 break;
+						  }
+                      	else if(palac_enemy == 2)
+                      	{
+                      		hp=maxhp;
+                      		zaginionypalac2(); 
+            system("CLS");
+			cout << "Gratulacje! Wygrales z Magiem, Doswiadczenie: +  400 | Hajs + $40" << endl;
+			experience+=400; hajs+=40;
+			hp=maxhp;
+							  break;
+					}
+					  }
+					  case 2:
+					  	{
+					  		wodospad1();
+						  }
+				}
+				break;
+
+           }
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                      //WIOSKA
+                      case 3:
+                      	{
+                      		cout << "******************************************" << endl;
+                      		cout << "Wkraczasz do wioski Yerazner Soseja." << endl;
+                      		cout << "1 - Koszary 2 - Szpital 3 - wyjdz;" << endl;
+                      		cout << "******************************************" << endl;
+                      		cin >> wioskawybor;
+                      		switch(wioskawybor)
+                      		{
+                      			case 1: {
+                      				if(murzynpierwraz==0)
+                      				{
+									  
+                      				cout << "Wkraczasz do koszarów. 220cm Murzyn cie wita z rudym afro." << endl;
+                      				getchar();
+                      				cout << "'AY AY, Waddup Dawg, Co jest popowane? Chcesz level podexpic? I got you homie, jestem Tyrone'" << endl;
+                      				cout << "Dochodzisz do Fundamentalnej konkluzji, ze murzyn ma rozdwojenie jazni, i raz mówi po polsku raz po angielsku." << endl;
+                      				getchar();
+                      				murzynpierwraz=1;
+                      			}
+                      			cout << "Dobra, co chcysz, szybko bo mam jamaica type beats na sredniowiecznym radiu, a spiewak od popowuje." << endl;
+                      			cout << "1 - Upgrade 2 - Wyjdz" << endl;
+                      				cin >> koszary;
+                      				switch(koszary)
+                      				{
+                      					case 1:{ // UPGRADOWANIE SKILLI
+										  if(pktdos>0)
+                      					{
+                      						 cout << "Dobra, Dawg. Który chcesz z Góra gradeowac?" << endl;
+                							 cout<<"**************************" << endl;
+               								 cout<<"*Statystyki: ( napisz numer)" << endl; 
+                							 cout<<"*[1]Sila:" << sila << endl;
+               								 cout<<"*[2]Zwinnosc:" << zwinnosc<< endl;
+               							 	 cout<<"*[3]Percepcja:"<< percepcja << endl; 
+               								 cout<<"*[4]Szczescie:" << szczescie << endl;
+               								 cout<<"*[5]Inteligencja" << inteligencja << endl;
+               								 cout<<"**************************" << endl;
+               								 cin >> upgrade;
+               								 switch(upgrade){
+               								 	case 1:{sila=sila+1; break;}case 2:{ zwinnosc=zwinnosc+1;break;}case 3:{percepcja=percepcja+1;break; }case 4:{szczescie=szczescie+1;break; }case 5:{inteligencja=inteligencja+1;break; }
+												}
+                
+                      						
+										  }
+										  else
+										  {
+										  	cout << "Nie masz punktow, ej dawg" << endl;
+										  	getchar();
+										  }
+										  
+										  break;}
+										  default: { cout << "ok to naura" << endl;
+											break;
+										  }
+									  
+									break;
+								  
+								  case 2:{
+								  	cout << "Dostales heala. do fulla." << endl; getchar();
+								  	hp = maxhp;
+								  	cout << "HP: " << hp << endl;
+									break;
+								  }
+								  	
+							  }
+
+						  }
+
+					}
+                      
+
+
+
+
+
+					system("CLS");
+                    }
+                
+
+               
+            }
+                 
+        }
+	
+    }
+}
+    return 0;
+
+}}
